@@ -1,11 +1,14 @@
 # Cara menjalankan
 1. clone project
-2. ```bash
+2. masuk ke folder
+```bash
 cd /kaspin
 ```
-3. ```js
+3. install dependensi
+```js
 npm install
 ```
-4. ```js
+4. jalankan server
+```js
 npm start 
 ```
