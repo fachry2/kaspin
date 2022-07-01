@@ -19,3 +19,7 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 Route.get('api/kaspin/v1/get-token', 'KaspinController.getToken')
+
+Route.group(() => {
+  Route.get('alamat/:id', 'KaspinController.findDataById')
+}).prefix('api/kaspin/v1').middleware('kaspin')
