@@ -46,6 +46,37 @@ class KaspinController {
 		    return response.status(code).json(result)
 		}
 	}
+
+	async findDataByKotaId ({ params, response }) {
+	    const result = {
+			status: 'success',
+			data:{}
+		}
+		let code = 200
+		try{
+			const {kota_id} = params
+		    const res = await axios('https://kasirpintar.co.id/allAddress.txt')
+		    let { address_kecamatan } =  res.data
+		    const [provinsi,kota,kecamatan,kelurahan] = [2,4,7,10]
+
+		    if(kota_id.length == kota){
+			    result.data.key = 'kecamatan'
+			    result.data.value = address_kecamatan.filter(e=>e.kota_id === kota_id)
+		    } else{
+		    	code = 404
+		    	result.status = 'Id not found'
+		    }
+		    if (!result.data.value.length) {
+		    	code = 404
+		    	result.status = 'kecamatan not founds'
+		    }
+		    return response.status(code).json(result)
+		} catch(e){
+			code = 500
+			result.status = `Error: ${e.message}`
+		    return response.status(code).json(result)
+		}
+	}
 }
 
 module.exports = KaspinController

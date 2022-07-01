@@ -22,4 +22,5 @@ Route.get('api/kaspin/v1/get-token', 'KaspinController.getToken')
 
 Route.group(() => {
   Route.get('alamat/:id', 'KaspinController.findDataById')
+  Route.get('alamat/kecamatan/:kota_id', 'KaspinController.findDataByKotaId')
 }).prefix('api/kaspin/v1').middleware('kaspin')
