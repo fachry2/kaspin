@@ -35,7 +35,7 @@ class KaspinController {
 		    	code = 404
 		    	result.status = 'Id not found'
 		    }
-		    if (!result.data.length) {
+		    if (!result.data.value.length) {
 		    	code = 404
 		    	result.status = 'Id not found'
 		    }
