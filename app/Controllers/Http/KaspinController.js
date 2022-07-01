@@ -21,22 +21,23 @@ class KaspinController {
 
 		    if (id.length == provinsi) {
 			    result.data.key = 'provinsi'
-			    result.data.value = address_provinsi.filter(e=>e.id === id)
+			    result.data.value = address_provinsi.find(e=>e.id === id)
 		    } else if(id.length == kota){
 			    result.data.key = 'kota'
-			    result.data.value = address_kota.filter(e=>e.id === id)
+			    result.data.value = address_kota.find(e=>e.id === id)
 		    }else if(id.length == kecamatan){
 			    result.data.key = 'kecamatan'
-			    result.data.value = address_kecamatan.filter(e=>e.id === id)
+			    result.data.value = address_kecamatan.find(e=>e.id === id)
 		    }else if(id.length == kelurahan){
 			    result.data.key = 'kelurahan'
-			    result.data.value = address_kelurahan.filter(e=>e.id ===id)
+			    result.data.value = address_kelurahan.find(e=>e.id ===id)
 		    } else{
 		    	code = 404
 		    	result.status = 'Id not found'
 		    }
-		    if (!result.data.value.length) {
+		    if (!result.data.value) {
 		    	code = 404
+		    	result.data = {}
 		    	result.status = 'Id not found'
 		    }
 		    return response.status(code).json(result)
