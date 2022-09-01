@@ -7,13 +7,16 @@ class AuthController {
     
         try {
           if (await auth.attempt(email, password)) {
-            let user = await User.findBy('email', email)
+            let user = await User
+            	.query()
+            	.select('id','username','email','role')
+            	.where('email', email)
+            	.first()
+
             let token = await auth.generate(user)
-    
             Object.assign(user, token)
             return response.json(user)
           }
-    
     
         }
         catch (e) {
