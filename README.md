@@ -6,9 +6,23 @@ cd /kaspin
 ```
 3. install dependensi
 ```js
-npm install
+npm install --omit=dev
 ```
-4. jalankan server
+4. migrasi seluruh tabel
 ```js
-npm start 
+adonis migration:run
 ```
+5. insert data user seed
+```js
+adonis seed
+```
+6. jalankan test
+```js
+adonis test
+```
+7. jalankan server
+```js
+adonis serve
+```
+
+documentation postman collection: https://documenter.getpostman.com/view/2272643/UzJESeXS#dokumentasi-untuk-menjalankan-server 
