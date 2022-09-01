@@ -16,6 +16,8 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.post('api/kaspin/v1/login', 'AuthController.login')
+
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
