@@ -4,7 +4,7 @@ const axios = require('axios')
 class KaspinController {
 	async findDataById ({ params, response }) {
 		    const result = {
-				message: 'success',
+				status: 'data',
 				data:{}
 			}
 			let code = 200
@@ -28,24 +28,24 @@ class KaspinController {
 				    result.data.value = address_kelurahan.find(e=>e.id ===id)
 			    } else{
 			    	code = 404
-			    	result.message = 'Id not found'
+			    	result.status = 'Id not found'
 			    }
 			    if (!result.data.value) {
 			    	code = 404
 			    	result.data = {}
-			    	result.message = 'Id not found'
+			    	result.status = 'Id not found'
 			    }
 			    return response.status(code).json(result)
 			} catch(e){
 				code = 500
-				result.message = `Error: ${e.message}`
+				result.status = `Error: ${e.message}`
 			    return response.status(code).json(result)
 			}
 		}
 
 	async findDataByKotaId ({ params, response }) {
 	    const result = {
-			message: 'success',
+			status: 'data',
 			data:{}
 		}
 		let code = 200
@@ -60,16 +60,16 @@ class KaspinController {
 			    result.data.value = address_kecamatan.filter(e=>e.kota_id === kota_id)
 		    } else{
 		    	code = 404
-		    	result.message = 'Id not found'
+		    	result.status = 'Id not found'
 		    }
 		    if (!result.data.value.length) {
 		    	code = 404
-		    	result.message = 'kecamatan not founds'
+		    	result.status = 'kecamatan not founds'
 		    }
 		    return response.status(code).json(result)
 		} catch(e){
 			code = 500
-			result.message = `Error: ${e.message}`
+			result.status = `Error: ${e.message}`
 		    return response.status(code).json(result)
 		}
 	}

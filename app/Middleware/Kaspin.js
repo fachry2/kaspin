@@ -11,7 +11,7 @@ class Kaspin {
    */
   async handle ({ request, response, auth }, next) {
     const formatResponse = {
-      message: '',
+      status: '',
       data: [],
     }
 
@@ -20,10 +20,10 @@ class Kaspin {
         if (user.role === 'admin') {
           return next()
         }
-        formatResponse.message = 'Permission denied'
+        formatResponse.status = 'Permission denied'
         return response.status(403).json(formatResponse)
     } catch (e) {
-        formatResponse.message = 'Missing or invalid jwt token'
+        formatResponse.status = 'Missing or invalid jwt token'
         return response.status(401).json(formatResponse)
     }
   }
