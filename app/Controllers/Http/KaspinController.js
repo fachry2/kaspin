@@ -4,7 +4,7 @@ const axios = require('axios')
 class KaspinController {
 	async findDataById ({ params, response }) {
 		    const result = {
-				status: 'success',
+				message: 'success',
 				data:{}
 			}
 			let code = 200
@@ -28,20 +28,51 @@ class KaspinController {
 				    result.data.value = address_kelurahan.find(e=>e.id ===id)
 			    } else{
 			    	code = 404
-			    	result.status = 'Id not found'
+			    	result.message = 'Id not found'
 			    }
 			    if (!result.data.value) {
 			    	code = 404
 			    	result.data = {}
-			    	result.status = 'Id not found'
+			    	result.message = 'Id not found'
 			    }
 			    return response.status(code).json(result)
 			} catch(e){
 				code = 500
-				result.status = `Error: ${e.message}`
+				result.message = `Error: ${e.message}`
 			    return response.status(code).json(result)
 			}
 		}
+
+	async findDataByKotaId ({ params, response }) {
+	    const result = {
+			message: 'success',
+			data:{}
+		}
+		let code = 200
+		try{
+			const {kota_id} = params
+		    const res = await axios('https://kasirpintar.co.id/allAddress.txt')
+		    let { address_kecamatan } =  res.data
+		    const [provinsi,kota,kecamatan,kelurahan] = [2,4,7,10]
+
+		    if(kota_id.length == kota){
+			    result.data.key = 'kecamatan'
+			    result.data.value = address_kecamatan.filter(e=>e.kota_id === kota_id)
+		    } else{
+		    	code = 404
+		    	result.message = 'Id not found'
+		    }
+		    if (!result.data.value.length) {
+		    	code = 404
+		    	result.message = 'kecamatan not founds'
+		    }
+		    return response.status(code).json(result)
+		} catch(e){
+			code = 500
+			result.message = `Error: ${e.message}`
+		    return response.status(code).json(result)
+		}
+	}
 }
 
 module.exports = KaspinController

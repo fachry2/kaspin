@@ -11,7 +11,6 @@ class Kaspin {
    */
   async handle ({ request, response, auth }, next) {
     const formatResponse = {
-      status: 'failed',
       message: '',
       data: [],
     }
