@@ -16,24 +16,14 @@ class Kaspin {
     }
 
     try {
-       let token = await auth.getAuthHeader()
-        if (!token) {
-          throw new Error('Token not found')
-        }
-       let c = await auth.check()
         const user = await auth.getUser()
         if (user.role === 'admin') {
           return next()
         }
         throw new Error(JSON.stringify({code: 403 , message:"Permission denied"}))
     } catch (e) {
-        let message = e.message
-        let code = 401
-        if(message.includes('JWT')){
-          message = message.split(': ')[1]
-        }
-        formatResponse.status = message
-        return response.status(code).json(formatResponse)
+        formatResponse.status = 'Missing or invalid jwt token'
+        return response.status(401).json(formatResponse)
     }
   }
 }
