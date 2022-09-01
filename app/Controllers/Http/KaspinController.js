@@ -1,5 +1,6 @@
 'use strict'
 const axios = require('axios')
+const Logger = use('Logger')
 
 class KaspinController {
 	async findDataById ({ params, response }) {
@@ -37,6 +38,7 @@ class KaspinController {
 			    }
 			    return response.status(code).json(result)
 			} catch(e){
+				Logger.transport('file').error("Error : ", e)
 				code = 500
 				result.status = `Error: ${e.message}`
 			    return response.status(code).json(result)
@@ -68,6 +70,7 @@ class KaspinController {
 		    }
 		    return response.status(code).json(result)
 		} catch(e){
+			Logger.transport('file').error("Error : ", e)
 			code = 500
 			result.status = `Error: ${e.message}`
 		    return response.status(code).json(result)

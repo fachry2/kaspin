@@ -1,5 +1,6 @@
 'use strict'
 const User = use('App/Models/User')
+const Logger = use('Logger')
 
 class AuthController {
 	async login ({ request, response, auth }) {
@@ -20,6 +21,7 @@ class AuthController {
     
         }
         catch (e) {
+          Logger.transport('file').error("Error : ", e)
           return response.json({message: 'Email not found'})
         }
 	}
