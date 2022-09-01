@@ -21,3 +21,7 @@ Route.post('api/kaspin/v1/login', 'AuthController.login')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.group(() => {
+  Route.get('alamat/:id', 'KaspinController.findDataById')
+}).prefix('api/kaspin/v1').middleware('kaspin')
