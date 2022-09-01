@@ -8,19 +8,25 @@ cd /kaspin
 ```js
 npm install --omit=dev
 ```
-4. migrasi seluruh tabel
+4. copy atau save as file .env-example menjadi .env dan generate key
+```bash
+cp .env.example .env
+
+adonis key:generate
+```
+5. migrasi seluruh tabel
 ```js
 adonis migration:run
 ```
-5. insert data user seed
+6. insert data user seed
 ```js
 adonis seed
 ```
-6. jalankan test
+7. jalankan test
 ```js
 adonis test
 ```
-7. jalankan server
+8. jalankan server
 ```js
 adonis serve
 ```
