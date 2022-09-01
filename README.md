@@ -2,7 +2,7 @@
 1. clone project
 2. masuk ke folder
 ```bash
-cd /kaspin
+cd kaspin
 ```
 3. install dependensi
 ```js
